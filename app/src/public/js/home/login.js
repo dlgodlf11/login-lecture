@@ -20,11 +20,21 @@ function login() {
     };
     fetch("/login", {
         method : "POST",
-        headers : {
-            "Content-Type":"application/json",
-        },
+        // headers : {
+        //     "Content-Type":"application/json",
+        // },
         body : JSON.stringify(req)
-    }).then((res)=>res.json())
-    .then((res)=>console.log(res))
+    })
+    .then((res)=>res.json())
+    .then((res)=>{
+        if(res.success){
+            location.href = "/";
+        }
+        else{
+            alert("실패");
+        }
+    }).catch((err)=>{
+        console.log(new Error("에러"));
+    })
 
 }
