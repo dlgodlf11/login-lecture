@@ -1,9 +1,6 @@
 "use strict";
 
-const users = {
-    id : ["dlgodlf11", "govkfl7788", "ghksl36"],
-    psword : ["govkfl11", "govkfl1!", "tngkr2dlrglacor!"]
-};
+const UserStorage = require("../../models/UserStorage");
 
 const output = {
      hello  :  (req, res)=>{
@@ -20,7 +17,7 @@ const process = {
     login:(req, res)=>{
         const id = req.body.id,
         psword = req.body.psword;
-
+        const users = UserStorage.getUsers("id", "psword");
         if(users.id.includes(id)){
             const idx = users.id.indexOf(id);
             if(users.psword[idx] === psword){
